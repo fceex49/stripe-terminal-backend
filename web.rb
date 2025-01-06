@@ -120,6 +120,8 @@ post '/create_payment_intent' do
     return log_info(validationError)
   end
 
+  log_info("payment amount as int: #{params[:amount].to_i}")
+  log_info("payment amount as str: #{params[:amount]}")
   begin
     payment_intent = Stripe::PaymentIntent.create(
       :payment_method_types => params[:payment_method_types] || ['card_present'],
