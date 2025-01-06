@@ -124,7 +124,7 @@ post '/create_payment_intent' do
     payment_intent = Stripe::PaymentIntent.create(
       :payment_method_types => params[:payment_method_types] || ['card_present'],
       :capture_method => params[:capture_method] || 'manual',
-      :amount => params[:amount],
+      :amount => params[:amount].to_i,
       :currency => params[:currency] || 'usd',
       :description => params[:description] || 'Example PaymentIntent',
       :payment_method_options => params[:payment_method_options] || [],
